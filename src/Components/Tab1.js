@@ -7,6 +7,7 @@ import {
     from 'react-native-responsive-screen';
 import { Searchbar } from 'react-native-paper';
 import AntDesign from "react-native-vector-icons/AntDesign";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import {
     Tab,
     Tabs,
@@ -16,22 +17,26 @@ import {
 } from 'native-base';
 import { Button } from 'react-native-paper';
 import FitImage from 'react-native-fit-image';
+import { TouchableOpacity } from 'react-native';
+import NumberFormat from 'react-number-format';
+import uuid from 'uuid';
+
 
 const data = [
     {
         item_name: 'Angel Cake',
         category: 'Cake',
-        ratings: 4.5,
+        price: 6000,
     },
     {
         item_name: 'Angel Delight',
         category: 'Cake',
-        ratings: 4.5,
+        price: 6000,
     },
     {
         item_name: 'Angel Tears',
         category: 'Cake',
-        ratings: 4.5,
+        price: 6000,
     },
 ];
 
@@ -42,9 +47,9 @@ export default class Tabs1 extends Component {
                 <FlatList
                     data={data}
                     renderItem={({ item }) =>
-                        <Card style={{ elevation: 3, borderRadius: 15, overflow: 'hidden', height: hp('35%'), marginBottom: hp('3%') }}>
+                        <Card style={{ elevation: 3, borderRadius: 15, overflow: 'hidden', height: hp('40%'), marginBottom: hp('3%') }}>
                             <Body>
-                                <View style={{ height: hp('16.5%'), overflow: 'hidden' }}>
+                                <View style={{ height: hp('22%'), overflow: 'hidden' }}>
                                     <FitImage
                                         source={require('../assets/img/download.jpg')}
                                         style={styles.FitImage}
@@ -53,28 +58,49 @@ export default class Tabs1 extends Component {
                                 <View style={{ flexDirection: 'row', flex: 1, marginHorizontal: wp('5%') }}>
                                     <View style={{ flex: 1 }}>
                                         <View style={{ flex: 1 }} />
-                                        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-                                            {item.item_name}
-                                        </Text>
+                                        <TouchableOpacity>
+                                            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
+                                                {item.item_name}
+                                            </Text>
+                                        </TouchableOpacity>
                                         <View style={{ flex: 1 }} />
                                         <Text style={{ fontSize: 15, color: '#BDBDBF' }}>
                                             {item.category}
                                         </Text>
                                         <View style={{ flex: 1 }} />
                                         <Text style={{ fontSize: 25 }}>
-                                            {item.ratings} <AntDesign name='star' size={25} color='#FAE900' />
+                                            <NumberFormat
+                                                value={item.price}
+                                                displayType={'text'}
+                                                thousandSeparator={true}
+                                                prefix={'Rp. '}
+                                                renderText={value => <Text>{value}</Text>}
+                                            />
+                                            {/* {item.price}  */}
                                         </Text>
                                         <View style={{ flex: 1 }} />
-                                        <Button mode="contained" color="#F96D00" onPress={() => console.log('Pressed')}>
+                                        {/* <Button mode="contained" color="white" onPress={() => console.log('Pressed')}>
                                             View Details
-                                                        </Button>
+                                        </Button> */}
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <TouchableOpacity style={{ flex: 1 }}>
+                                                <View style={{ alignItems: 'center', justifyContent: 'center', marginRight: wp('2'), height: hp('4'), borderWidth: 1, borderRadius: 5, borderColor: '#F96D00' }}>
+                                                    <Text style={{ color: '#F96D00', fontSize:15 }}><FontAwesome5 name="grip-vertical" size={15} /> View Details</Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={{ flex: 1 }}>
+                                                <View style={{ alignItems: 'center', justifyContent: 'center', marginLeft: wp('2'), height: hp('4'), borderWidth: 1, borderRadius: 5, borderColor: '#F96D00' }}>
+                                                    <Text style={{ color: '#F96D00' }}><FontAwesome5 name="shopping-cart" size={15} /> Quick Buy</Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
                                         <View style={{ flex: 1 }} />
                                     </View>
                                 </View>
                             </Body>
                         </Card>
                     }
-                    keyExtractor={item => item.id}
+                    keyExtractor={() => uuid}
                 />
             </View>
         )
@@ -86,7 +112,7 @@ const styles = {
         flex: 1
     },
     FitImage: {
-        height: hp('16.4%'),
+        height: hp('22%'),
         width: wp('92%')
     }
 
