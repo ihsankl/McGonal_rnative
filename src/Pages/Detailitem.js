@@ -72,7 +72,7 @@ export default class Detailitem extends Component {
                                 <View style={{ flex: 1 }} />
                                 <Text style={{ fontSize: 33, fontWeight: 'bold' }}>{item.item_name}</Text>
                                 <View style={{ flex: 1 }} />
-                                <Text style={{ fontSize: 15, color: '#BDBDBF' }}>{item.category}</Text>
+                                <Text style={{ fontSize: 20, color: '#BDBDBF' }}>{item.category}</Text>
                                 <View style={{ flex: 1 }} />
                                 <NumberFormat
                                     style={{ flex: 1 }}
@@ -176,9 +176,9 @@ export default class Detailitem extends Component {
                 {/* END MAIN CONTENT */}
 
                 {/* FOOTER */}
-                <View style={{ height: hp('7'), flexDirection: 'row', padding: 6, justifyContent: 'space-between' }}>
+                <View style={{ height: hp('7'), flexDirection: 'row', padding: 6, backgroundColor:'rgba(0,0,0,.2)' }}>
                     {/* QTY */}
-                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    {/* <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <TouchableOpacity onPress={() => this.setState({ qty: this.state.qty + 1 })} style={{ backgroundColor: '#F96D00', borderRadius: 5, width: 40, height: 40, justifyContent: 'center', alignItems: 'center' }}>
                             <AntDesign name="plus" color="white" size={25} />
                         </TouchableOpacity>
@@ -198,7 +198,7 @@ export default class Detailitem extends Component {
                         <TouchableOpacity style={{ flex: 1, marginRight: wp('3'), backgroundColor: '#F96D00', justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#F96D00', borderRadius: 5 }}>
                             <Text style={{ color: '#F96D00', fontSize: 13, color: 'white' }}> Buy Now</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                 </View>
             </View>
         )

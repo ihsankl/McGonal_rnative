@@ -1,0 +1,1 @@
+export const APP_URL = 'http://3.93.239.80:3001'
