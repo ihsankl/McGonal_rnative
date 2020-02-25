@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {
     Text,
-    View,
     ScrollView,
     TouchableOpacity,
     FlatList,
@@ -21,6 +20,7 @@ import {
     Body,
     Tabs,
     Tab,
+    View,
     TabHeading
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
@@ -29,8 +29,10 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import AwesomeAlert from 'react-native-awesome-alerts';
 import NumberFormat from 'react-number-format';
-import Modal from 'react-native-modalbox';
+// import Modal from 'react-native-modalbox';
+import Modal from "react-native-modal";
 import StarRating from 'react-native-star-rating';
+import Myheader from '../Components/Myheader';
 
 
 
@@ -87,7 +89,7 @@ export default class History extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Appbar.Header style={{ backgroundColor: 'white' }}>
+                {/* <Appbar.Header style={{ backgroundColor: 'white' }}>
                     <Appbar.Action
                         // style={{backgroundColor:'red'}}
                         icon="arrow-left"
@@ -97,14 +99,16 @@ export default class History extends Component {
                     <Appbar.Content
                         title="History"
                     />
-                </Appbar.Header>
+                </Appbar.Header> */}
+                <Myheader title="History" />
                 <FlatList
                     style={{ marginTop: hp('2.6') }}
                     data={DATA}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={this.showReview} style={{ marginHorizontal: wp('5'), flexDirection: 'row' }}>
-                            <View style={{ flex: 1 }}>
-                                <Card style={{ padding: 5, borderRadius: 10, height: hp('15'), marginBottom: hp('2'), flexDirection: 'row', overflow: 'hidden' }}>
+                        <View style={{ marginHorizontal: wp('5'), flexDirection: 'row', }}>
+                            <TouchableOpacity onPress={this.showReview} style={{ flex: 1, elevation: 5 }}>
+
+                                <Card style={{ padding: 5, borderRadius: 10, height: hp('15'), marginBottom: hp('2'), flexDirection: 'row', overflow: 'hidden', borderWidth: 1, borderColor: '#ddd' }}>
                                     <FitImage
                                         source={require('../assets/img/download.jpg')}
                                         style={styles.FitImage}
@@ -138,13 +142,15 @@ export default class History extends Component {
                                         </Text>
                                     </View>
                                 </Card>
-                            </View>
-                        </TouchableOpacity>
+                            </TouchableOpacity>
+                        </View>
                     }
                     keyExtractor={item => item.id}
                 />
                 {/* REVIEW MODAL HERE */}
-                <Modal style={styles.modal3} onClosed={() => this.setState({ showReview: false })} position={"center"} ref={"modal3"} isOpen={this.state.showReview}>
+                {/* ==========================================NEW MODAL TEST============================================== */}
+                <Modal isVisible={this.state.showReview} onBackButtonPress={() => this.setState({ showReview: false })}>
+                    <View style={styles.modal3}>
                     <View style={{ flexDirection: 'column', flex: 1 }}>
                         <View style={{ flex: 1, flexDirection: 'row' }}>
                             <View style={{ flex: 7 }}>
@@ -166,10 +172,10 @@ export default class History extends Component {
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
-                                style={{ borderWidth: 1, borderRadius: 5, borderColor: 'rgba(0,0,0,.2)', marginVertical: hp('1') }}
-                                multiline
+                                style={{ borderWidth: 1, borderRadius: 5, borderColor: 'rgba(0,0,0,.2)', marginVertical: hp('1'), height:hp('7') }}
+                                multiline={true}
                                 placeholder="Write your feedback"
-                                numberOfLines={5}
+                                numberOfLines={10}
                                 onChangeText={text => this.setState({ review: text })}
                                 value={this.state.review}
                             />
@@ -183,6 +189,7 @@ export default class History extends Component {
                                 </LinearGradient>
                             </TouchableOpacity>
                         </View>
+                    </View>
                     </View>
                 </Modal>
             </View>
@@ -199,10 +206,13 @@ const styles = {
     },
     modal3: {
         height: hp('40'),
-        width: wp('80'),
+        width: '100%',
+        // marginHorizontal:wp('5'),
+        // marginVertical:hp('30'),
         padding: 25,
         borderRadius: 5,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundColor:'white',
     },
 
 }

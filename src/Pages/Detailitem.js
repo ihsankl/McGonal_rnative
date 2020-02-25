@@ -21,6 +21,7 @@ import { Appbar, Button } from 'react-native-paper';
 import AntDesign from "react-native-vector-icons/AntDesign";
 import NumberFormat from 'react-number-format';
 import Tabs1 from '../Components/Tab1';
+import Myheader from '../Components/Myheader';
 
 
 const data = [
@@ -48,14 +49,15 @@ export default class Detailitem extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Appbar.Header style={{ backgroundColor: 'white' }}>
+                {/* <Appbar.Header style={{ backgroundColor: 'white' }}>
                     <Appbar.Action
                         // style={{backgroundColor:'red'}}
                         icon="arrow-left"
                         color="#F96D00"
                         onPress={this._goBack}
                     />
-                </Appbar.Header>
+                </Appbar.Header> */}
+                <Myheader title="Detail Item" isHome={false} />
 
                 {/* MAIN CONTENT */}
 

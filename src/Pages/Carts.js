@@ -21,6 +21,7 @@ import { Appbar, Button } from 'react-native-paper';
 import AntDesign from "react-native-vector-icons/AntDesign";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import NumberFormat from 'react-number-format';
+import Myheader from '../Components/Myheader';
 
 const DATA = [
     {
@@ -44,7 +45,7 @@ export default class Carts extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Appbar.Header style={{ backgroundColor: 'white' }}>
+                {/* <Appbar.Header style={{ backgroundColor: 'white' }}>
                     <Appbar.Action
                         // style={{backgroundColor:'red'}}
                         icon="arrow-left"
@@ -54,7 +55,8 @@ export default class Carts extends Component {
                     <Appbar.Content
                         title="Carts List"
                     />
-                </Appbar.Header>
+                </Appbar.Header> */}
+                <Myheader title="Carts List" />
                 <FlatList
                     style={{ marginTop: hp('2.6') }}
                     data={DATA}
@@ -103,7 +105,7 @@ export default class Carts extends Component {
                     }
                     keyExtractor={item => item.id}
                 />
-                <View style={{ height: hp('7'), flexDirection: 'row', justifyContent: 'space-between', padding: 6 }}>
+                <View style={{ height: hp('7'), flexDirection: 'row', justifyContent: 'space-between', padding: 6, backgroundColor:'white' }}>
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                             Total:

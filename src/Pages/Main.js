@@ -7,6 +7,7 @@ import {
     from 'react-native-responsive-screen';
 import { Searchbar } from 'react-native-paper';
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 import {
     Tab,
     Tabs,
@@ -17,9 +18,12 @@ import {
 import { Button } from 'react-native-paper';
 import FitImage from 'react-native-fit-image';
 import Tabs1 from '../Components/Tab1';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { withNavigation } from 'react-navigation';
 
 
-export default class Main extends Component {
+
+class Main extends Component {
     constructor(props) {
         super(props)
 
@@ -34,9 +38,15 @@ export default class Main extends Component {
                 <View style={styles.flex}>
                     <View style={{ height: hp('25%'), paddingHorizontal: wp('4.5%') }}>
                         <View style={{ flex: 1 }}>
-                            <View style={{ flex: 1 }} />
-                            <View style={{ flex: 1, marginVertical: hp('1.3%') }}>
-                                <Text style={{ fontSize: 40 }}>Explore Food</Text>
+                            <View style={{ flex: 1, marginVertical: hp('1.3%'), flexDirection: 'row' }}>
+                                <View style={{ flex: 4, overflow: 'hidden', justifyContent: 'center' }}>
+                                    <Text style={{ fontSize: 40 }}>Explore Food</Text>
+                                </View>
+                                <View style={{ flex: 1, flexDirection: 'column', alignItems:'flex-end' }}>
+                                    <View style={{ flex: 2 }} />
+                                    <TouchableOpacity onPress={()=> this.props.navigation.openDrawer()}><Entypo name="menu" size={40} /></TouchableOpacity>
+                                    <View style={{ flex: 1 }} />
+                                </View>
                             </View>
                             <View style={{ flex: 1, marginVertical: hp('1%') }}>
                                 <Searchbar
@@ -58,10 +68,7 @@ export default class Main extends Component {
                                 </TabHeading>
                             }>
                                 {/* CONTENT STARTS HERE */}
-
-
                                 <Tabs1 />
-
                                 {/* CONTENT ENDS */}
                             </Tab>
                             {/* ANOTHER CONTENTS HERE */}
@@ -82,6 +89,10 @@ export default class Main extends Component {
         )
     }
 }
+
+const MainOri = withNavigation(Main);
+export default MainOri;
+
 
 const styles = {
     flex: {

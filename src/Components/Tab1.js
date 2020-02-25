@@ -19,6 +19,7 @@ import { Button } from 'react-native-paper';
 import FitImage from 'react-native-fit-image';
 import { TouchableOpacity } from 'react-native';
 import NumberFormat from 'react-number-format';
+import { withNavigation } from 'react-navigation';
 import uuid from 'uuid';
 
 
@@ -40,11 +41,12 @@ const data = [
     },
 ];
 
-export default class Tabs1 extends Component {
+class Tabs1 extends Component {
     render() {
         return (
             <View style={{ marginVertical: hp('2%'), marginHorizontal: wp('4%') }}>
                 <FlatList
+                    showsVerticalScrollIndicator={false}
                     data={data}
                     renderItem={({ item }) =>
                         <Card style={{ elevation: 3, borderRadius: 15, overflow: 'hidden', height: hp('40%'), marginBottom: hp('3%') }}>
@@ -64,7 +66,7 @@ export default class Tabs1 extends Component {
                                             </Text>
                                         </TouchableOpacity>
                                         <View style={{ flex: 1 }} />
-                                        <Text style={{ fontSize: 15, color: '#BDBDBF' }}>
+                                        <Text style={{ fontSize: 20, color: '#BDBDBF' }}>
                                             {item.category}
                                         </Text>
                                         <View style={{ flex: 1 }} />
@@ -79,18 +81,15 @@ export default class Tabs1 extends Component {
                                             {/* {item.price}  */}
                                         </Text>
                                         <View style={{ flex: 1 }} />
-                                        {/* <Button mode="contained" color="white" onPress={() => console.log('Pressed')}>
-                                            View Details
-                                        </Button> */}
                                         <View style={{ flexDirection: 'row' }}>
-                                            <TouchableOpacity style={{ flex: 1 }}>
+                                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Detailitem')} style={{ flex: 1 }}>
                                                 <View style={{ alignItems: 'center', justifyContent: 'center', marginRight: wp('2'), height: hp('4'), borderWidth: 1, borderRadius: 5, borderColor: '#F96D00' }}>
-                                                    <Text style={{ color: '#F96D00', fontSize:15 }}><FontAwesome5 name="grip-vertical" size={15} /> View Details</Text>
+                                                    <Text style={{ color: '#F96D00', fontSize: 15 }}><FontAwesome5 name="grip-vertical" size={15} /> View Details</Text>
                                                 </View>
                                             </TouchableOpacity>
                                             <TouchableOpacity style={{ flex: 1 }}>
                                                 <View style={{ alignItems: 'center', justifyContent: 'center', marginLeft: wp('2'), height: hp('4'), borderWidth: 1, borderRadius: 5, borderColor: '#F96D00' }}>
-                                                    <Text style={{ color: '#F96D00' }}><FontAwesome5 name="shopping-cart" size={15} /> Quick Buy</Text>
+                                                    <Text style={{ color: '#F96D00' }}><FontAwesome5 name="shopping-cart" size={15} /> Buy Now</Text>
                                                 </View>
                                             </TouchableOpacity>
                                         </View>
@@ -106,6 +105,10 @@ export default class Tabs1 extends Component {
         )
     }
 }
+
+const Tabzz = withNavigation(Tabs1);
+
+export default Tabzz
 
 const styles = {
     flex: {

@@ -57,7 +57,7 @@ export default class Login extends Component {
               <View style={{ flex: 1 }} />
             </Card>
             <View style={{ height: hp('25%'), paddingTop: hp('9.5%') }}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate('Login')}>
                 <View style={styles.registerButton}>
                   <Text style={{ color: '#F96D00', fontSize: 15 }}>
                     Back To Login Page
