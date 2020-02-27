@@ -21,39 +21,57 @@ import { TouchableOpacity } from 'react-native';
 import NumberFormat from 'react-number-format';
 import { withNavigation } from 'react-navigation';
 import uuid from 'uuid';
+import { connect } from 'react-redux'
+import { APP_URL } from '../redux/config';
 
 
-const data = [
-    {
-        item_name: 'Angel Cake',
-        category: 'Cake',
-        price: 6000,
-    },
-    {
-        item_name: 'Angel Delight',
-        category: 'Cake',
-        price: 6000,
-    },
-    {
-        item_name: 'Angel Tears',
-        category: 'Cake',
-        price: 6000,
-    },
-];
+// const data = [
+//     {
+//         item_name: 'Angel Cake',
+//         category: 'Cake',
+//         price: 6000,
+//     },
+//     {
+//         item_name: 'Angel Delight',
+//         category: 'Cake',
+//         price: 6000,
+//     },
+//     {
+//         item_name: 'Angel Tears',
+//         category: 'Cake',
+//         price: 6000,
+//     },
+// ];
 
 class Tabs1 extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            data:[]
+        }
+    }
+
+    componentDidMount() {
+        this.getItems()
+    }
+    
+    getItems= ()=> {
+        this.setState({data:this.props.data})
+    }
+    
     render() {
         return (
             <View style={{ marginVertical: hp('2%'), marginHorizontal: wp('4%') }}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={data}
+                    data={this.state.data}
                     renderItem={({ item }) =>
                         <Card style={{ elevation: 3, borderRadius: 15, overflow: 'hidden', height: hp('40%'), marginBottom: hp('3%') }}>
                             <Body>
                                 <View style={{ height: hp('22%'), overflow: 'hidden' }}>
                                     <FitImage
-                                        source={require('../assets/img/download.jpg')}
+                                        source={{uri:`${APP_URL}/images/${item.images}`}}
                                         style={styles.FitImage}
                                     />
                                 </View>
@@ -62,13 +80,9 @@ class Tabs1 extends Component {
                                         <View style={{ flex: 1 }} />
                                         <TouchableOpacity>
                                             <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
-                                                {item.item_name}
+                                                {item.item}
                                             </Text>
                                         </TouchableOpacity>
-                                        <View style={{ flex: 1 }} />
-                                        <Text style={{ fontSize: 20, color: '#BDBDBF' }}>
-                                            {item.category}
-                                        </Text>
                                         <View style={{ flex: 1 }} />
                                         <Text style={{ fontSize: 25 }}>
                                             <NumberFormat
@@ -108,7 +122,13 @@ class Tabs1 extends Component {
 
 const Tabzz = withNavigation(Tabs1);
 
-export default Tabzz
+const mapStateToProps = state => {
+    return {
+        items: state.items,
+    }
+}
+
+export default connect(mapStateToProps)(Tabzz)
 
 const styles = {
     flex: {

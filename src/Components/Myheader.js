@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
 import { Appbar } from 'react-native-paper';
 import { withNavigation } from 'react-navigation';
+import Entypo from "react-native-vector-icons/Entypo";
+
 
 
 class Myheader extends Component {
-
-    // _goBack = () => console.log('Went back');
 
     render() {
         const { isHome = true } = this.props
         return (
             <Appbar.Header style={{ backgroundColor: 'white' }}>
-                {/* <Appbar.Action
-                    // style={{backgroundColor:'red'}}
-                    icon="arrow-left"
-                    color="#F96D00"
-                    onPress={this._goBack}
-                /> */}
                 {!isHome &&
                     <Appbar.Action
                         icon="arrow-left"
@@ -27,6 +20,10 @@ class Myheader extends Component {
                 }
                 <Appbar.Content
                     title={this.props.title}
+                />
+                <Appbar.Action
+                    icon={()=> <Entypo name="menu" color="#F96D00" size={25} />}
+                    onPress={() => this.props.navigation.openDrawer()}
                 />
             </Appbar.Header>
         )
